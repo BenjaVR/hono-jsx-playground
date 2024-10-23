@@ -1,0 +1,35 @@
+{
+  "name": "hono-jsx-playground",
+  "private": true,
+  "type": "module",
+  "files": [
+    "public",
+    "build"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:app\" \"npm run dev:css\" --prefix command --prefixColors auto",
+    "dev:app": "tsx watch src/index.ts",
+    "dev:css": "tailwindcss -i src/styles.css -o public/build/styles.css -w",
+    "build:app": "tsc",
+    "build:css": "tailwindcss -i src/styles.css -o public/build/styles.css -m",
+    "prebuild": "npm run clean",
+    "build": "concurrently \"npm run build:app\" \"npm run build:css\" --prefix command --prefixColors auto",
+    "start": "node build/index.js",
+    "clean": "rimraf build public/build"
+  },
+  "dependencies": {
+    "@hono/node-server": "1.13.2",
+    "hono": "4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.9",
+    "concurrently": "9.0.1",
+    "rimraf": "6.0.1",
+    "tailwindcss": "3.4.14",
+    "tsx": "4.19.1",
+    "typescript": "5.6.3"
+  },
+  "engines": {
+    "node": "22"
+  }
+}
